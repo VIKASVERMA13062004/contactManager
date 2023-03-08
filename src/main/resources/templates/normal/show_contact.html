@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="normal/base::layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title th:text="${title}"></title>
+
+</head>
+<body>
+
+<section >
+
+<div class="card mr-3">
+<div class="card-body">
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#Id</th>
+      <th scope="col">Name</th>
+      <th scope="col">Second Name</th>
+      <th scope="col">Phone</th>
+      
+      <th scope="col">Email</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr th:each="c:${contact}">
+      <th scope="row" th:text="${'SMC2023'+c.cId}">1</th>
+      <td >	
+      
+      <!-- <img th:src="@{'/image/'+${c.image}}"  alt="nothing"/> -->
+      
+      <span th:text="${c.name}"></span>
+      </td>
+      <td th:text="${c.secondName}"></td>
+      <td th:text="${c.phone}"></td>
+      <td >
+      <a th:text="${c.email}"><span th:text="${c.email}"></span></a>
+      
+      Email</td>
+      <!-- th:href="@{'/user/delete/'+${c.cId}}" -->
+      <td><a href="#" th:onclick="|del(${c.cId})|" class="btn btn-danger sm-2">Delete</a>
+      
+      <form method="post"  th:action="@{'/user/update-contact/'+${c.cId}}"class="mt-2">
+      
+      <button type="submit"class="btn btn-success sm-2">Update</button>
+      </form>
+      
+      </td>
+    </tr>
+   
+  </tbody>
+</table>
+
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+  
+  
+    <li th:if="${currentpage!=0}" class="page-item"><a class="page-link" href="#" th:href="@{'/user/show-contact/'+${currentpage-1}}">Previous</a></li>
+    
+    
+    <li th:classappend="${currentpage==i-1?'active':''}" th:each="i:${#numbers.sequence(1,totalpage)}" class="page-item"><a class="page-link" href="#" th:href="@{'/user/show-contact/'+${i-1}}"><span th:text="${i}"></span></a></li>
+    
+    
+    
+    <li  th:if="${currentpage+1!=totalpage}"class="page-item"><a class="page-link" href="#" th:href="@{'/user/show-contact/'+${currentpage+1}}">Next</a></li>
+  </ul>
+</nav>
+
+</div>
+</div>
+</section>
+
+</body>
+</html>

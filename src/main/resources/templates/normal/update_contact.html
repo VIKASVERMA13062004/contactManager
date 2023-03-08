@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="normal/base::layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+
+<title>Insert title here</title>
+<body>
+
+	<section>
+
+
+
+
+		<div class="conatiner ">
+			<div class="card mr-3">
+				<h1 class="text-center">Update Contact</h1>
+				<div class="card-body  	">
+					<div class="container-fluid mt-1">
+						<div class="row">
+							<div class="col-md-10 offset-md-1">
+								<div th:if="${session.message}"
+									th:classappend="${session.message.type}"
+									class="alert  text-center" role="alert">
+									<span th:text="${session.message.content}"> </span>
+
+								</div>
+								<form th:object="${contact}" action="#"
+									th:action="@{'/user/updated_data/'+${contact.cId}}" method="post" class="mt-2"
+									enctype="multipart/form-data">
+
+
+									<!-- first name -->
+
+									<div class="input-group">
+										<div class="input-group-prepend">
+											<div class="input-group-text mr-3">
+												<i class="fa fa-plus"></i>
+											</div>
+										</div>
+										<input th:value="${contact.name}"type="text" id="firstname" name="name"
+											placeholder="Enter Name" class="form-control">
+									</div>
+									<!--second name  -->
+									<div class="input-group mt-3">
+										<div class="input-group-prepend">
+											<div class="input-group-text mr-3">
+												<i class="fas fa-user-alt"></i>
+											</div>
+										</div>
+										<input th:value="${contact.secondName}" type="text" id="secondname" name="secondName"
+											placeholder="Enter Nick Name" class="form-control">
+									</div>
+
+									<!-- phone number -->
+
+									<div class="input-group mt-3">
+										<div class="input-group-prepend">
+											<div class="input-group-text mr-3">
+												<i class="fa-solid fa-phone"></i>
+											</div>
+										</div>
+										<input  th:value="${contact.phone}"type="number" id="phonenumber" name="phone"
+											placeholder="Enter Phone Number" class="form-control">
+									</div>
+									<!-- email -->
+									<div class="input-group mt-3">
+										<div class="input-group-prepend">
+											<div class="input-group-text mr-3">
+												<i class="fa-solid fa-envelope"></i>
+											</div>
+										</div>
+										<input th:value="${contact.email}" type="email" id="email" name="email"
+											placeholder="Enter Email" class="form-control">
+									</div>
+
+									<div class="input-group mt-3">
+										<div class="input-group-prepend">
+											<div class="input-group-text mr-3">
+												<i class="fa-solid fa-briefcase"></i>
+											</div>
+										</div>
+										<input th:value="${contact.work}"type="text" id="work" name="work"
+											placeholder="Enter Work" class="form-control">
+									</div>
+
+									<div class="form-group mt-3">
+										<textarea name="description" id="default-editor" rows="10"
+											class="form-control" th:value="${contact.description}" placeholder="Enter Work"> </textarea>
+									</div>
+
+									<div class="custom-file">
+										<input type="file" name="image">
+									</div>
+
+
+
+
+
+
+
+
+									<div class="text-center mt-3">
+										<button id="vv" type="submit" class="btn bg-primary">Submit</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<script
+			src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/6.3.1/tinymce.min.js"
+			integrity="sha512-eV68QXP3t5Jbsf18jfqT8xclEJSGvSK5uClUuqayUbF5IRK8e2/VSXIFHzEoBnNcvLBkHngnnd3CY7AFpUhF7w=="
+			crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	</section>
+
+</body>
+</html>
